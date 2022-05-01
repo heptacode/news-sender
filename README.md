@@ -11,6 +11,7 @@
 ## 기술 스택
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-282C34.svg?&style=for-the-badge&logo=typescript)
+![NodeJS](https://img.shields.io/badge/Node.js-282C34?style=for-the-badge&logo=node.js)
 ![Yarn Berry](https://img.shields.io/badge/Yarn_Berry-282C34.svg?&style=for-the-badge&logo=yarn)
 ![Rollup](https://img.shields.io/badge/Rollup-282C34.svg?&style=for-the-badge)
 
@@ -21,7 +22,7 @@
    ```js
    [
      {
-       "name": "김현우",           // 이름: string
+       "name": "김현우",             // 이름: string
        "birthDate": "0000-00-00",  // 생년월일: string
        "enterDate": "0000-00-00",  // 입대일: string
        "startDate": "0000-00-00",  // 전송 시작일: string
