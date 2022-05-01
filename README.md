@@ -16,7 +16,22 @@
 
 ## 설치하기
 
-- `yarn`
+1. 최상위 디렉토리에 `soldiers.json` 파일을 생성해주세요.
+
+   ```json
+   [
+     {
+       "name": "김현우",           // 이름: string
+       "birthDate": "0000-00-00",  // 생년월일: string
+       "enterDate": "0000-00-00",  // 입대일: string
+       "startDate": "0000-00-00",  // 전송 시작일: string
+       "endDate": "0000-00-00"     // 전송 종료일: string
+     },
+     ...
+   ]
+   ```
+
+2. `yarn`
 
 ## 개발하기
 
