@@ -1,0 +1,44 @@
+{
+  "name": "thecamp-news-sender",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "deploy": "rollup -c && pm2 start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heptacode/thecamp-news-sender.git"
+  },
+  "author": "heptacode <admin@hyunwoo.kim> (https://hyunwoo.kim)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heptacode/thecamp-news-sender/issues"
+  },
+  "homepage": "https://github.com/heptacode/thecamp-news-sender#readme",
+  "dependencies": {
+    "axios": "latest",
+    "chalk": "^4.1.2",
+    "dayjs": "latest",
+    "dotenv": "latest",
+    "node-html-parser": "latest",
+    "node-schedule": "latest",
+    "pm2": "latest",
+    "qs": "latest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "latest",
+    "@rollup/plugin-run": "latest",
+    "@rollup/plugin-typescript": "latest",
+    "@types/node": "latest",
+    "@types/node-schedule": "latest",
+    "@types/qs": "latest",
+    "rollup": "latest",
+    "ts-node": "latest",
+    "tslib": "latest",
+    "typescript": "latest"
+  },
+  "packageManager": "yarn@3.2.0"
+}
