@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "deploy": "rollup -c && pm2 start"
+    "deploy": "git pull && rollup -c && pm2 start"
   },
   "repository": {
     "type": "git",

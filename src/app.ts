@@ -44,7 +44,7 @@ const execute = async () => {
           content: content,
         });
 
-        console.log(`${soldier.name} > ${newsItem.category.toUpperCase()}`);
+        log.s(`${soldier.name} > ${newsItem.category.toUpperCase()}`);
       }
     }
   } catch (error) {
