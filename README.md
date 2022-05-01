@@ -18,7 +18,7 @@
 
 1. 최상위 디렉토리에 `soldiers.json` 파일을 생성해주세요.
 
-   ```json
+   ```js
    [
      {
        "name": "김현우",           // 이름: string
