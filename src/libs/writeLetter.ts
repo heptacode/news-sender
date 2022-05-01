@@ -30,13 +30,12 @@ export default async function (payload: LetterPayload) {
   }
 
   // 편지 보내기
-  // await postRequest<void>('/consolLetter/insertConsolLetterA.do', {
-  //   trainUnitEduSeq: payload.soldier.trainUnitEduSeq ?? config.soldiers[soldierIdx].trainUnitEduSeq,
-  //   traineeMgrSeq: payload.soldier.traineeMgrSeq ?? config.soldiers[soldierIdx].traineeMgrSeq,
-  //   sympathyLetterSubject: `[${payload.author}] ${payload.title}`,
-  //   sympathyLetterContent: payload.content.replace(/(?:\r\n|\r|\n)/g, '<br>'),
-  //   boardDiv: 'sympathyLetter',
-  //   tempSaveYn: 'N',
-  // });
-  console.log('보내기 직전', payload.title);
+  await postRequest<void>('/consolLetter/insertConsolLetterA.do', {
+    trainUnitEduSeq: payload.soldier.trainUnitEduSeq ?? config.soldiers[soldierIdx].trainUnitEduSeq,
+    traineeMgrSeq: payload.soldier.traineeMgrSeq ?? config.soldiers[soldierIdx].traineeMgrSeq,
+    sympathyLetterSubject: `[${payload.author}] ${payload.title}`,
+    sympathyLetterContent: payload.content.replace(/(?:\r\n|\r|\n)/g, '<br>'),
+    boardDiv: 'sympathyLetter',
+    tempSaveYn: 'N',
+  });
 }

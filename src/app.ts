@@ -18,6 +18,7 @@ const execute = async () => {
     for (const soldier of config.soldiers) {
       // 시작, 종료날짜 검사
       if (dayjs().isBefore(dayjs(soldier.startDate)) || dayjs().isAfter(dayjs(soldier.endDate))) {
+        log.w(`${soldier.name} > 전송 기간 X`);
         continue;
       }
 
@@ -52,5 +53,3 @@ const execute = async () => {
 };
 
 scheduleJob('0 12 * * *', execute);
-
-execute();
