@@ -3,10 +3,10 @@ import dayjs from 'dayjs';
 import { log } from '@/modules/logger';
 import { accessSync, constants } from 'fs';
 
-import login from '@/libs/login';
-import writeLetter from '@/libs/writeLetter';
-import checkAvailability from '@/libs/checkAvailability';
 import getNews from '@/libs/getNews';
+import login from '@/libs/login';
+import checkAvailability from '@/libs/checkAvailability';
+import writeLetter from '@/libs/writeLetter';
 
 import { config } from '@/config';
 import { NewsPayload } from '@/types';
