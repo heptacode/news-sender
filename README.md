@@ -8,6 +8,8 @@
 
 > 더캠프 뉴스 전송 자동화 스크립트
 
+> 훈련소에서 매일 인편으로 뉴스를 받아볼 수 있도록 도와줍니다.
+
 ## 기술 스택
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-282C34.svg?&style=for-the-badge&logo=typescript)
@@ -17,7 +19,14 @@
 
 ## 설치하기
 
-1. 최상위 디렉토리에 `soldiers.json` 파일을 생성해주세요.
+1. 최상위 디렉토리에 `.env` 파일을 생성해주세요.
+
+   ```
+   USER_ID= // 더캠프 계정 ID: string
+   USER_PW= // 더캠프 계정 PW: string
+   ```
+
+2. 최상위 디렉토리에 `soldiers.json` 파일을 생성해주세요.
 
    ```js
    [
@@ -32,7 +41,7 @@
    ]
    ```
 
-2. `yarn`
+3. `yarn`
 
 ## 개발하기
 
