@@ -21,11 +21,13 @@ const init = () => {
     require(resolve(__dirname, '../soldiers.json'));
   } catch (error) {
     log.w('README를 참고하여 .env 파일과 soldiers.json 파일을 생성해주세요.');
+    process.exit();
   }
 
-  const missingValues = REQUIRED_ENV.filter((key: string) => !process.env[key].length);
+  const missingValues = REQUIRED_ENV.filter((key: string) => !process.env[key]?.length);
   if (missingValues.length) {
-    return log.w(`README를 참고하여 .env 파일에 ${missingValues.join(', ')} 변수를 지정해주세요.`);
+    log.w(`README를 참고하여 .env 파일에 ${missingValues.join(', ')} 변수를 지정해주세요.`);
+    process.exit();
   }
 
   log.i('구동 완료. CRON 작업 대기중...');
