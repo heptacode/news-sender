@@ -1,13 +1,35 @@
 import { scheduleJob } from 'node-schedule';
 import dayjs from 'dayjs';
 import { log } from '@/modules/logger';
+import { accessSync, constants } from 'fs';
+
 import login from '@/libs/login';
-import { config } from '@/config';
 import writeLetter from '@/libs/writeLetter';
 import checkAvailability from '@/libs/checkAvailability';
 import getNews from '@/libs/getNews';
+
+import { config } from '@/config';
 import { NewsPayload } from '@/types';
 import 'dotenv/config';
+import { resolve } from 'path';
+
+const REQUIRED_ENV = ['USER_ID', 'USER_PW'];
+
+const init = () => {
+  try {
+    accessSync('.env', constants.F_OK);
+    require(resolve(__dirname, '../soldiers.json'));
+  } catch (error) {
+    log.w('README를 참고하여 .env 파일과 soldiers.json 파일을 생성해주세요.');
+  }
+
+  const missingValues = REQUIRED_ENV.filter((key: string) => !process.env[key].length);
+  if (missingValues.length) {
+    return log.w(`README를 참고하여 .env 파일에 ${missingValues.join(', ')} 변수를 지정해주세요.`);
+  }
+
+  log.i('구동 완료. CRON 작업 대기중...');
+};
 
 const execute = async () => {
   try {
@@ -52,4 +74,5 @@ const execute = async () => {
   }
 };
 
-scheduleJob('0 12 * * *', execute);
+init();
+scheduleJob('0 12 * * *', execute); // 매일 정오에 실행
