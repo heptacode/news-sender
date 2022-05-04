@@ -61,4 +61,4 @@
 ## 기여하기
 
 - [Issues](https://github.com/heptacode/thecamp-news-sender/issues)
-- [fork](https://github.com/heptacode/thecamp-news-sender/fork)
+- [Fork](https://github.com/heptacode/thecamp-news-sender/fork)
