@@ -39,10 +39,5 @@ export default async function (soldier: Soldier): Promise<boolean> {
     })
   ).data;
 
-  // regOrder: 6;
-  // name: 장용선;
-  // enterDate: 20220404;
-  // birth: 20020909;
-
   return !cafeResult.resultCd.includes('M');
 }
