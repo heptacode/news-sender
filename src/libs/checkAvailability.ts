@@ -1,8 +1,9 @@
 import { parse } from 'node-html-parser';
 import { getRequest, postRequest } from '@/libs/httpRequest';
 import { getDateWithHyphens, getDateWithoutHyphens } from '@/modules/dateConverter';
+import { log } from '@/modules/logger';
 import { config } from '@/config';
-import { Soldier } from '@/types';
+import { Soldier, SoldierUnit } from '@/types';
 
 export default async function (soldier: Soldier): Promise<boolean> {
   // addSoilder
@@ -11,7 +12,7 @@ export default async function (soldier: Soldier): Promise<boolean> {
     name: soldier.name,
     birth: getDateWithHyphens(soldier.birthDate),
     enterDate: getDateWithHyphens(soldier.enterDate),
-    trainUnitCd: '20020191700', // 육군훈련소
+    trainUnitCd: soldier.unit ? SoldierUnit[soldier.unit] : '20020191700', // default: 육군훈련소
     missSoldierClassCdNm: '예비군인/훈련병',
     grpCd: '0000010001', // 육군
     grpCdNm: '육군',
@@ -32,12 +33,17 @@ export default async function (soldier: Soldier): Promise<boolean> {
       name: soldier.name,
       birth: getDateWithoutHyphens(soldier.birthDate),
       enterDate: getDateWithoutHyphens(soldier.enterDate),
-      trainUnitCd: '20020191700', // 육군훈련소
+      trainUnitCd: soldier.unit ? SoldierUnit[soldier.unit] : '20020191700', // default: 육군훈련소
       grpCd: '0000010001', // 육군
       trainUnitTypeCd: '0000140001', // ??
       traineeRelationshipCd: '0000420006', // 친구/지인
     })
   ).data;
 
-  return !cafeResult.resultCd.includes('M');
+  const isAvailable = !cafeResult.resultCd.includes('M');
+  if (!isAvailable) {
+    log.w(`${soldier.name} > 카페 개설 X`);
+  }
+
+  return isAvailable;
 }

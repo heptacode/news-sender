@@ -1,13 +1,16 @@
 import { AxiosRequestConfig } from 'axios';
+import { SoldierUnit } from './enums';
 
 export interface Soldier {
   name: string;
+  unit?: SoldierUnit;
   birthDate: string;
   enterDate: string;
   startDate: string;
   endDate: string;
   trainUnitEduSeq?: string;
   traineeMgrSeq?: string;
+  exclude?: boolean;
 }
 
 export interface Config {
@@ -55,3 +58,5 @@ export interface LetterPayload {
   title: string;
   content: string;
 }
+
+export * from './enums';

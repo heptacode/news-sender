@@ -32,10 +32,12 @@
    [
      {
        "name": "김현우",             // 이름: string
+       "unit": "육군훈련소",        // (Optional) 부대명?: SolderUnit (src/types/enums.ts)
        "birthDate": "0000-00-00",  // 생년월일: string
        "enterDate": "0000-00-00",  // 입대일: string
        "startDate": "0000-00-00",  // 전송 시작일: string
-       "endDate": "0000-00-00"     // 전송 종료일: string
+       "endDate": "0000-00-00",     // 전송 종료일: string
+       "exclude": false,            // (Optional) 제외?: boolean
      },
      ...
    ]

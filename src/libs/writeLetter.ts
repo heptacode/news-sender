@@ -1,7 +1,7 @@
 import { parse } from 'node-html-parser';
 import { getRequest, postRequest } from '@/libs/httpRequest';
 import { updateSoldiers } from '@/modules/updateSoldiers';
-import { LetterPayload } from '@/types';
+import { LetterPayload, SoldierUnit } from '@/types';
 import { config } from '@/config';
 
 export default async function (payload: LetterPayload) {
@@ -22,7 +22,9 @@ export default async function (payload: LetterPayload) {
     config.soldiers[soldierIdx].traineeMgrSeq = (
       await postRequest<any>('/consolLetter/viewConsolLetterMain.do', {
         trainUnitEduSeq: config.soldiers[soldierIdx].trainUnitEduSeq,
-        trainUnitCd: '20020191700',
+        trainUnitCd: config.soldiers[soldierIdx].unit
+          ? SoldierUnit[config.soldiers[soldierIdx].unit]
+          : '20020191700', // default: 육군훈련소
       })
     ).data.match(/(traineeMgrSeq = '(.*?)\'\;)/)[2];
 
