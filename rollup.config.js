@@ -9,7 +9,7 @@ export default {
     format: 'cjs',
   },
   plugins: [
-    run(),
+    process.env.ROLLUP_WATCH === 'true' && run(),
     typescript(),
     alias({
       entries: [{ find: '@', replacement: 'src' }],

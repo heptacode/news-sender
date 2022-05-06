@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "rollup -c -w",
+    "dev": "rollup -cw",
     "build": "rollup -c",
     "deploy": "git pull && rollup -c && pm2 start"
   },
