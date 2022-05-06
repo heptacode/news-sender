@@ -1,6 +1,6 @@
 import { postRequest } from '@/libs/httpRequest';
 import { getTrainUnitEduSeq } from '@/libs/getTrainUnitEduSeq';
-import { getTraineeMsrSeq } from './getTraineeMgrSeq';
+import { getTraineeMsrSeq } from '@/libs/getTraineeMgrSeq';
 import { updateSoldiers } from '@/modules/updateSoldiers';
 import { LetterPayload } from '@/types';
 import { config } from '@/config';

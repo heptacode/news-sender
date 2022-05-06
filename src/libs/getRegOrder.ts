@@ -7,11 +7,10 @@ import { Soldier } from '@/types';
  * @param {Soldier} soldier
  * @returns {string} regOrder
  */
-export const getSequence = async (soldier: Soldier): Promise<string> => {
+export const getRegOrder = async (soldier: Soldier): Promise<string> => {
   const soldierRegListResponse = (await getRequest<any>('/missSoldier/viewMissSoldierRegList.do'))
     .data;
   const wrappers = parse(soldierRegListResponse).querySelectorAll('div.profile-info-area');
   const wrapper = wrappers.find(wrapper => wrapper.rawText.trim().includes(soldier.name));
-  const regOrder = wrapper.querySelector('a.btn-profile-set').attrs.href.match(/\d+/)[0];
-  return regOrder;
+  return wrapper.querySelector('a.btn-profile-set').attrs.href.match(/\d+/)[0];
 };

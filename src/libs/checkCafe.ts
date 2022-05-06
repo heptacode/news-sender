@@ -1,9 +1,8 @@
-import { parse } from 'node-html-parser';
-import { getRequest, postRequest } from '@/libs/httpRequest';
+import { getRegOrder } from '@/libs/getRegOrder';
+import { postRequest } from '@/libs/httpRequest';
 import { getDateWithoutHyphens } from '@/modules/dateConverter';
 import { log } from '@/modules/logger';
 import { Soldier, SoldierUnit } from '@/types';
-import { getSequence } from './getSequence';
 
 /**
  * 카페 가입 확인
@@ -13,7 +12,7 @@ import { getSequence } from './getSequence';
 export const checkCafe = async (soldier: Soldier): Promise<boolean> => {
   const cafeResult = (
     await postRequest<any>('/main/cafeCreateCheckA.do', {
-      regOrder: await getSequence(soldier),
+      regOrder: await getRegOrder(soldier),
       name: soldier.name,
       birth: getDateWithoutHyphens(soldier.birthDate),
       enterDate: getDateWithoutHyphens(soldier.enterDate),
