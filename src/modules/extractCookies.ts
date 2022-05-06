@@ -1,5 +1,8 @@
 import { Cookie } from '@/types';
 
+/**
+ * Cookie 추출
+ */
 export const extractCookies = (cookies: string[]): Cookie => {
   if (!cookies.length) {
     throw new Error('Invalid Cookie');

@@ -2,7 +2,11 @@ import axios from 'axios';
 import { config } from '@/config';
 import { NewsPayload } from '@/types';
 
-export default async function () {
+/**
+ * 뉴스 가져오기
+ * @returns {NewsPayload[]}
+ */
+export const getNews = async (): Promise<NewsPayload[]> => {
   const promises: NewsPayload[] = [];
 
   for (const category of config.categories) {
@@ -17,4 +21,4 @@ export default async function () {
   }
 
   return await Promise.all([...promises]);
-}
+};

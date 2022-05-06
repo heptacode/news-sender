@@ -1,8 +1,12 @@
-import { extractCookies } from '@/libs/extractCookies';
 import { postRequest } from '@/libs/httpRequest';
+import { extractCookies } from '@/modules/extractCookies';
 import { config } from '@/config';
 
-export default async function () {
+/**
+ * 로그인
+ * @returns {void} void
+ */
+export const login = async (): Promise<void> => {
   const loginResponse = await postRequest<any>('/login/loginA.do', {
     state: 'email-login',
     autoLoginYn: 'N',
@@ -18,4 +22,4 @@ export default async function () {
       Cookie: `${iuid}; ${token}`,
     },
   };
-}
+};

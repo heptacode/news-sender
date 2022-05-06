@@ -1,16 +1,15 @@
 import { scheduleJob } from 'node-schedule';
-import dayjs from 'dayjs';
-import { log } from '@/modules/logger';
+import { getNews } from '@/libs/getNews';
+import { login } from '@/libs/login';
+import { addSoldier } from '@/libs/addSoldier';
+import { checkCafe } from '@/libs/checkCafe';
+import { sendNews } from '@/libs/sendNews';
 import { checkEnvironment } from '@/modules/checkEnvironment';
 import { getTargetSoldiers } from '@/modules/getTargetSoldiers';
+import { log } from '@/modules/logger';
 import { config } from '@/config';
 import { NewsPayload } from '@/types';
 import 'dotenv/config';
-
-import getNews from '@/libs/getNews';
-import login from '@/libs/login';
-import checkAvailability from '@/libs/checkAvailability';
-import writeLetter from '@/libs/writeLetter';
 
 const init = async () => {
   await checkEnvironment();
@@ -24,25 +23,15 @@ const execute = async () => {
     await login();
 
     for (const soldier of getTargetSoldiers(config.soldiers)) {
+      // 보고싶은 군인 추가
+      await addSoldier(soldier);
+
       // 카페 개설여부 확인
-      if (!(await checkAvailability(soldier))) continue;
+      if (!(await checkCafe(soldier))) continue;
 
+      // 뉴스 전송
       for (const newsItem of newsList) {
-        let content: string = ``;
-        for (const news of newsItem.news) {
-          content += `# ${news.title}\n${news.summary.slice(
-            0,
-            news.summary.indexOf('다.') + 1
-          )}\n\n`;
-        }
-
-        await writeLetter({
-          soldier: soldier,
-          author: dayjs().format('YYYY-MM-DD'),
-          title: newsItem.category.toUpperCase(),
-          content: content,
-        });
-
+        await sendNews(soldier, newsItem);
         log.s(`${soldier.name} > ${newsItem.category.toUpperCase()}`);
       }
     }

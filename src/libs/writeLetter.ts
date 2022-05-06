@@ -1,33 +1,24 @@
-import { parse } from 'node-html-parser';
-import { getRequest, postRequest } from '@/libs/httpRequest';
+import { postRequest } from '@/libs/httpRequest';
+import { getTrainUnitEduSeq } from '@/libs/getTrainUnitEduSeq';
+import { getTraineeMsrSeq } from './getTraineeMgrSeq';
 import { updateSoldiers } from '@/modules/updateSoldiers';
-import { LetterPayload, SoldierUnit } from '@/types';
+import { LetterPayload } from '@/types';
 import { config } from '@/config';
 
-export default async function (payload: LetterPayload) {
+/**
+ * 편지 작성하기
+ * @param {LetterPayload} LetterPayload
+ * @returns {void} void
+ */
+export const writeLetter = async (payload: LetterPayload): Promise<void> => {
   const soldierIdx = config.soldiers.findIndex(
     soldier =>
       soldier.name === payload.soldier.name && soldier.birthDate === payload.soldier.birthDate
   );
 
   if (!payload.soldier.trainUnitEduSeq) {
-    // 교육대코드 조회
-    const trainUnitEduSeqResponse = (await getRequest<any>('/eduUnitCafe/viewEduUnitCafeMain.do'))
-      .data;
-    const wrappers = parse(trainUnitEduSeqResponse).querySelectorAll('div.profile-wrap');
-    const wrapper = wrappers.find(wrapper => wrapper.rawText.trim().includes(payload.soldier.name));
-    config.soldiers[soldierIdx].trainUnitEduSeq = wrapper.attrs.onclick.match(/\d+/)[0];
-
-    // 훈련병 식별 코드 조회
-    config.soldiers[soldierIdx].traineeMgrSeq = (
-      await postRequest<any>('/consolLetter/viewConsolLetterMain.do', {
-        trainUnitEduSeq: config.soldiers[soldierIdx].trainUnitEduSeq,
-        trainUnitCd: config.soldiers[soldierIdx].unit
-          ? SoldierUnit[config.soldiers[soldierIdx].unit]
-          : '20020191700', // default: 육군훈련소
-      })
-    ).data.match(/(traineeMgrSeq = '(.*?)\'\;)/)[2];
-
+    config.soldiers[soldierIdx].trainUnitEduSeq = await getTrainUnitEduSeq(payload.soldier);
+    config.soldiers[soldierIdx].traineeMgrSeq = await getTraineeMsrSeq(payload.soldier);
     updateSoldiers();
   }
 
@@ -40,4 +31,4 @@ export default async function (payload: LetterPayload) {
     boardDiv: 'sympathyLetter',
     tempSaveYn: 'N',
   });
-}
+};
