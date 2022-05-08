@@ -21,5 +21,5 @@ export const addSoldier = async (soldier: Soldier): Promise<boolean> => {
     missSoldierClassCd: '0000490001', // '예비군인/훈련병'
   });
 
-  return !(response.data?.resultCd === 'E001');
+  return response.data?.resultCd !== 'E001';
 };
