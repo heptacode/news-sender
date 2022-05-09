@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "deploy": "git pull && rollup -c && pm2 start"
+    "deploy": "git pull && rollup -c && pm2 start",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,13 +30,17 @@
     "qs": "latest"
   },
   "devDependencies": {
+    "@jest/types": "latest",
     "@rollup/plugin-alias": "latest",
     "@rollup/plugin-run": "latest",
     "@rollup/plugin-typescript": "latest",
+    "@types/jest": "latest",
     "@types/node": "latest",
     "@types/node-schedule": "latest",
     "@types/qs": "latest",
+    "jest": "latest",
     "rollup": "latest",
+    "ts-jest": "latest",
     "ts-node": "latest",
     "tslib": "latest",
     "typescript": "latest"
