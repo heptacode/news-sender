@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 
-export const getDateWithHyphens = (date: string): string => {
+export function getDateWithHyphens(date: string): string {
   return dayjs(date).format('YYYY-MM-DD');
-};
+}
 
-export const getDateWithoutHyphens = (date: string): string => {
+export function getDateWithoutHyphens(date: string): string {
   return dayjs(date).format('YYYYMMDD');
-};
+}

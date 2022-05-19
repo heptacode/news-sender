@@ -1,6 +1,6 @@
+import { config } from '@/config';
 import { postRequest } from '@/libs/httpRequest';
 import { getDateWithHyphens } from '@/modules/dateConverter';
-import { config } from '@/config';
 import { Soldier, SoldierUnit } from '@/types';
 
 /**
@@ -8,7 +8,7 @@ import { Soldier, SoldierUnit } from '@/types';
  * @param {Soldier} soldier
  * @returns {boolean} 등록에 성공하면 true, 이미 등록된 군인이면 false
  */
-export const addSoldier = async (soldier: Soldier): Promise<boolean> => {
+export async function addSoldier(soldier: Soldier): Promise<boolean> {
   const response = await postRequest<any>('/missSoldier/insertDirectMissSoldierA.do', {
     iuid: config.iuid,
     name: soldier.name,
@@ -22,4 +22,4 @@ export const addSoldier = async (soldier: Soldier): Promise<boolean> => {
   });
 
   return !!(response.data?.resultCd !== 'E001');
-};
+}

@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { config } from '@/config';
 import { NewsPayload } from '@/types';
+import axios from 'axios';
 
 /**
  * 뉴스 가져오기
  * @returns {NewsPayload[]}
  */
-export const getNews = async (): Promise<NewsPayload[]> => {
+export async function getNews(): Promise<NewsPayload[]> {
   const promises: NewsPayload[] = [];
 
   for (const category of config.categories) {
@@ -21,4 +21,4 @@ export const getNews = async (): Promise<NewsPayload[]> => {
   }
 
   return await Promise.all([...promises]);
-};
+}

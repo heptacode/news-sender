@@ -1,16 +1,16 @@
-import { postRequest } from '@/libs/httpRequest';
-import { getTrainUnitEduSeq } from '@/libs/getTrainUnitEduSeq';
+import { config } from '@/config';
 import { getTraineeMsrSeq } from '@/libs/getTraineeMgrSeq';
+import { getTrainUnitEduSeq } from '@/libs/getTrainUnitEduSeq';
+import { postRequest } from '@/libs/httpRequest';
 import { updateSoldiers } from '@/modules/updateSoldiers';
 import { LetterPayload } from '@/types';
-import { config } from '@/config';
 
 /**
  * 편지 작성하기
  * @param {LetterPayload} LetterPayload
  * @returns {void} void
  */
-export const writeLetter = async (payload: LetterPayload): Promise<void> => {
+export async function writeLetter(payload: LetterPayload): Promise<void> {
   const soldierIdx = config.soldiers.findIndex(
     soldier =>
       soldier.name === payload.soldier.name && soldier.birthDate === payload.soldier.birthDate
@@ -31,4 +31,4 @@ export const writeLetter = async (payload: LetterPayload): Promise<void> => {
     boardDiv: 'sympathyLetter',
     tempSaveYn: 'N',
   });
-};
+}

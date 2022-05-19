@@ -6,11 +6,11 @@ import { Soldier, SoldierUnit } from '@/types';
  * @param {Soldier} soldier
  * @returns {string} traineeMgrSeq
  */
-export const getTraineeMsrSeq = async (soldier: Soldier) => {
+export async function getTraineeMsrSeq(soldier: Soldier) {
   return (
     await postRequest<any>('/consolLetter/viewConsolLetterMain.do', {
       trainUnitEduSeq: soldier.trainUnitEduSeq,
       trainUnitCd: soldier.unit ? SoldierUnit[soldier.unit] : '20020191700', // default: 육군훈련소
     })
   ).data.match(/(traineeMgrSeq = '(.*?)\'\;)/)[2];
-};
+}

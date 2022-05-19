@@ -1,10 +1,10 @@
-import { resolve } from 'path';
-import { accessSync, constants } from 'fs';
 import { log } from '@/modules/logger';
+import { accessSync, constants } from 'fs';
+import { resolve } from 'path';
 
 const REQUIRED_ENV = ['USER_ID', 'USER_PW'];
 
-export const checkEnvironment = () => {
+export function checkEnvironment() {
   try {
     accessSync('.env', constants.F_OK);
     require(resolve(__dirname, '../soldiers.json'));
@@ -19,4 +19,4 @@ export const checkEnvironment = () => {
     log.w('README를 참고하여 .env 파일과 soldiers.json 파일을 생성해주세요.');
     process.exit();
   }
-};
+}

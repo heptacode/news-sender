@@ -1,12 +1,12 @@
+import { config } from '@/config';
 import { postRequest } from '@/libs/httpRequest';
 import { extractCookies } from '@/modules/extractCookies';
-import { config } from '@/config';
 
 /**
  * 로그인
  * @returns {void} void
  */
-export const login = async (): Promise<void> => {
+export async function login(): Promise<void> {
   const loginResponse = await postRequest<any>('/login/loginA.do', {
     state: 'email-login',
     autoLoginYn: 'N',
@@ -22,4 +22,4 @@ export const login = async (): Promise<void> => {
       Cookie: `${iuid}; ${token}`,
     },
   };
-};
+}

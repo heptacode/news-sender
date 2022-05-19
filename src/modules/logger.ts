@@ -1,9 +1,9 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 
 export const log = {
   getTsp(): string {
-    return new Date().toLocaleString("ko-KR", {
-      timeZone: "Asia/Seoul",
+    return new Date().toLocaleString('ko-KR', {
+      timeZone: 'Asia/Seoul',
     });
   },
   // Error

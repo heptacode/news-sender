@@ -9,7 +9,7 @@ import { Soldier, SoldierUnit } from '@/types';
  * @param {Soldier} soldier
  * @returns {boolean} 카페 가입 여부
  */
-export const checkCafe = async (soldier: Soldier): Promise<boolean> => {
+export async function checkCafe(soldier: Soldier): Promise<boolean> {
   const cafeResult = (
     await postRequest<any>('/main/cafeCreateCheckA.do', {
       regOrder: await getRegOrder(soldier),
@@ -29,4 +29,4 @@ export const checkCafe = async (soldier: Soldier): Promise<boolean> => {
   }
 
   return isAvailable;
-};
+}
