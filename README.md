@@ -1,6 +1,6 @@
 <div align="center">
 
-# Thecamp News Sender 🗞️
+# News Sender 🗞️
 
 </div>
 
@@ -65,5 +65,5 @@
 
 ## 기여하기
 
-- [Issues](https://github.com/heptacode/thecamp-news-sender/issues)
-- [Fork](https://github.com/heptacode/thecamp-news-sender/fork)
+- [Issues](https://github.com/heptacode/news-sender/issues)
+- [Fork](https://github.com/heptacode/news-sender/fork)
