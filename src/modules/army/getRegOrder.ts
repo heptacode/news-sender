@@ -1,4 +1,4 @@
-import { getRequest } from '@/libs/httpRequest';
+import { getRequest } from '@/modules/army/httpRequest';
 import { Soldier } from '@/types';
 import { parse } from 'node-html-parser';
 

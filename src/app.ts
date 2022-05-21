@@ -1,15 +1,16 @@
-import { scheduleJob } from 'node-schedule';
-import { getNews } from '@/libs/getNews';
-import { login } from '@/libs/login';
-import { addSoldier } from '@/libs/addSoldier';
-import { checkCafe } from '@/libs/checkCafe';
-import { sendNews } from '@/libs/sendNews';
+import { config } from '@/config';
+import { sendNews as sendNewsAirForce } from '@/modules/airForce/sendNews';
+import { login } from '@/modules/army/login';
+import { sendNews as sendNewsArmy } from '@/modules/army/sendNews';
 import { checkEnvironment } from '@/modules/checkEnvironment';
+import { getNews } from '@/modules/getNews';
 import { getTargetSoldiers } from '@/modules/getTargetSoldiers';
 import { log } from '@/modules/logger';
-import { config } from '@/config';
-import { NewsPayload } from '@/types';
+import { NewsPayload, SoldierType } from '@/types';
 import 'dotenv/config';
+import { scheduleJob } from 'node-schedule';
+import { addSoldier } from './modules/army/addSoldier';
+import { checkCafe } from './modules/army/checkCafe';
 
 const init = async () => {
   await checkEnvironment();
@@ -23,16 +24,27 @@ const execute = async () => {
     await login();
 
     for (const soldier of getTargetSoldiers(config.soldiers)) {
-      // 보고싶은 군인 추가
-      await addSoldier(soldier);
+      switch (soldier.type) {
+        case SoldierType.AIR_FORCE:
+          for (const newsItem of newsList) {
+            await sendNewsAirForce(soldier, newsItem);
+            log.s(`공군 ${soldier.name} > ${newsItem.category.toUpperCase()}`);
+          }
+          continue;
+        case SoldierType.ARMY:
+        default:
+          // 보고싶은 군인 추가
+          await addSoldier(soldier);
 
-      // 카페 개설여부 확인
-      if (!(await checkCafe(soldier))) continue;
+          // 카페 개설여부 확인
+          if (!(await checkCafe(soldier))) continue;
 
-      // 뉴스 전송
-      for (const newsItem of newsList) {
-        await sendNews(soldier, newsItem);
-        log.s(`${soldier.name} > ${newsItem.category.toUpperCase()}`);
+          // 뉴스 전송
+          for (const newsItem of newsList) {
+            await sendNewsArmy(soldier, newsItem);
+            log.s(`육군 ${soldier.name} > ${newsItem.category.toUpperCase()}`);
+          }
+          continue;
       }
     }
   } catch (error) {

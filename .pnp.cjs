@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chalk", "npm:4.1.2"],\
             ["dayjs", "npm:1.11.1"],\
             ["dotenv", "npm:16.0.0"],\
+            ["https", "npm:1.0.0"],\
             ["jest", "virtual:8e2930a59e8f1efba98d33b3b3656ea93962b03cb9a342db68e5bada1597e30aa0c671236d06172646389b49c3a1aa719f2f5a467b8b82447446a9b7eb812f1e#npm:28.1.0"],\
             ["node-html-parser", "npm:5.3.3"],\
             ["node-schedule", "npm:2.1.0"],\
@@ -3494,6 +3495,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["https", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/https-npm-1.0.0-39254cc592-ccea8a8363.zip/node_modules/https/",\
+          "packageDependencies": [\
+            ["https", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["https-proxy-agent", [\
         ["npm:5.0.1", {\
           "packageLocation": "./.yarn/cache/https-proxy-agent-npm-5.0.1-42d65f358e-571fccdf38.zip/node_modules/https-proxy-agent/",\
@@ -6047,6 +6057,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chalk", "npm:4.1.2"],\
             ["dayjs", "npm:1.11.1"],\
             ["dotenv", "npm:16.0.0"],\
+            ["https", "npm:1.0.0"],\
             ["jest", "virtual:8e2930a59e8f1efba98d33b3b3656ea93962b03cb9a342db68e5bada1597e30aa0c671236d06172646389b49c3a1aa719f2f5a467b8b82447446a9b7eb812f1e#npm:28.1.0"],\
             ["node-html-parser", "npm:5.3.3"],\
             ["node-schedule", "npm:2.1.0"],\

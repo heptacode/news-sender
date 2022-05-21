@@ -1,3 +1,8 @@
+export enum SoldierType {
+  ARMY = '육군',
+  AIR_FORCE = '공군',
+}
+
 export enum SoldierUnit {
   '육군훈련소' = '20020191700',
   '육군3사관학교' = '20020920000',

@@ -1,5 +1,5 @@
-import { getRegOrder } from '@/libs/getRegOrder';
-import { postRequest } from '@/libs/httpRequest';
+import { getRegOrder } from '@/modules/army/getRegOrder';
+import { postRequest } from '@/modules/army/httpRequest';
 import { getDateWithoutHyphens } from '@/modules/dateConverter';
 import { log } from '@/modules/logger';
 import { Soldier, SoldierUnit } from '@/types';

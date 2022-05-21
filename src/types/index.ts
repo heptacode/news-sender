@@ -1,22 +1,22 @@
 import { AxiosRequestConfig } from 'axios';
-import { SoldierUnit } from './enums';
+import { SoldierType, SoldierUnit } from './enums';
 
 export interface Soldier {
   name: string;
+  type?: SoldierType;
   unit?: SoldierUnit;
   birthDate: string;
   enterDate: string;
   startDate: string;
   endDate: string;
-  trainUnitEduSeq?: string;
-  traineeMgrSeq?: string;
+  unitId?: string;
+  id?: string;
   exclude?: boolean;
 }
 
 export interface Config {
   iuid: string;
   requestConfig: AxiosRequestConfig;
-  baseUrl: string;
   categories: string[];
   pageSize: number;
   soldiers: Soldier[];

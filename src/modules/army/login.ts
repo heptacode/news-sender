@@ -1,5 +1,5 @@
 import { config } from '@/config';
-import { postRequest } from '@/libs/httpRequest';
+import { postRequest } from '@/modules/army/httpRequest';
 import { extractCookies } from '@/modules/extractCookies';
 
 /**

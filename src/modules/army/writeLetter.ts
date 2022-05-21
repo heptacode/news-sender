@@ -1,7 +1,7 @@
 import { config } from '@/config';
-import { getTraineeMsrSeq } from '@/libs/getTraineeMgrSeq';
-import { getTrainUnitEduSeq } from '@/libs/getTrainUnitEduSeq';
-import { postRequest } from '@/libs/httpRequest';
+import { getId } from '@/modules/army/getId';
+import { getUnitId } from '@/modules/army/getUnitId';
+import { postRequest } from '@/modules/army/httpRequest';
 import { updateSoldiers } from '@/modules/updateSoldiers';
 import { LetterPayload } from '@/types';
 
@@ -16,16 +16,16 @@ export async function writeLetter(payload: LetterPayload): Promise<void> {
       soldier.name === payload.soldier.name && soldier.birthDate === payload.soldier.birthDate
   );
 
-  if (!payload.soldier.trainUnitEduSeq) {
-    config.soldiers[soldierIdx].trainUnitEduSeq = await getTrainUnitEduSeq(payload.soldier);
-    config.soldiers[soldierIdx].traineeMgrSeq = await getTraineeMsrSeq(payload.soldier);
+  if (!payload.soldier.unitId || !payload.soldier.id) {
+    config.soldiers[soldierIdx].unitId = await getUnitId(payload.soldier);
+    config.soldiers[soldierIdx].id = await getId(payload.soldier);
     updateSoldiers();
   }
 
   // 편지 보내기
   await postRequest<void>('/consolLetter/insertConsolLetterA.do', {
-    trainUnitEduSeq: payload.soldier.trainUnitEduSeq ?? config.soldiers[soldierIdx].trainUnitEduSeq,
-    traineeMgrSeq: payload.soldier.traineeMgrSeq ?? config.soldiers[soldierIdx].traineeMgrSeq,
+    trainUnitEduSeq: payload.soldier.unitId ?? config.soldiers[soldierIdx].unitId,
+    traineeMgrSeq: payload.soldier.id ?? config.soldiers[soldierIdx].id,
     sympathyLetterSubject: `[${payload.author}] ${payload.title}`,
     sympathyLetterContent: payload.content.replace(/(?:\r\n|\r|\n)/g, '<br>'),
     boardDiv: 'sympathyLetter',

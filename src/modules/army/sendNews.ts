@@ -1,4 +1,4 @@
-import { writeLetter } from '@/libs/writeLetter';
+import { writeLetter } from '@/modules/army/writeLetter';
 import { NewsPayload, Soldier } from '@/types';
 import dayjs from 'dayjs';
 

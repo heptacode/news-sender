@@ -1,5 +1,5 @@
 import { config } from '@/config';
-import { postRequest } from '@/libs/httpRequest';
+import { postRequest } from '@/modules/army/httpRequest';
 import { getDateWithHyphens } from '@/modules/dateConverter';
 import { Soldier, SoldierUnit } from '@/types';
 
