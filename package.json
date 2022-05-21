@@ -1,5 +1,5 @@
 {
-  "name": "thecamp-news-sender",
+  "name": "news-sender",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heptacode/thecamp-news-sender.git"
+    "url": "git+https://github.com/heptacode/news-sender.git"
   },
   "author": "heptacode <admin@hyunwoo.kim> (https://hyunwoo.kim)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/heptacode/thecamp-news-sender/issues"
+    "url": "https://github.com/heptacode/news-sender/issues"
   },
-  "homepage": "https://github.com/heptacode/thecamp-news-sender#readme",
+  "homepage": "https://github.com/heptacode/news-sender#readme",
   "dependencies": {
     "axios": "latest",
     "chalk": "^4.1.2",

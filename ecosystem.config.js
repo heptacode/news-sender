@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'thecamp-news-sender',
+      name: 'news-sender',
       script: 'dist/app.js',
       autorestart: true,
       max_memory_restart: '1G',
