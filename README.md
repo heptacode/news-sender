@@ -1,3 +1,9 @@
+> ## This project is no longer maintained. Please use [@heptacode/military-letter](https://github.com/heptacode/miliary-letter)
+
+---
+
+<br><br>
+
 <div align="center">
 
 # News Sender 🗞️
