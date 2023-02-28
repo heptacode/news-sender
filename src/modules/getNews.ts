@@ -14,7 +14,7 @@ export async function getNews(): Promise<NewsPayload[]> {
       category: category,
       news: (
         await axios.get(
-          `https://news.daum.net/api/harmonydic/contents/news.json?category=${category}&pageSize=${config.pageSize}`
+          `https://news.daum.net/api/harmonydic/contents/news.json?category=${category}&page=1&pageSize=${config.pageSize}`
         )
       ).data.list,
     });
