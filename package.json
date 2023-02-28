@@ -1,6 +1,7 @@
 {
   "name": "news-sender",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "private": true,
   "scripts": {

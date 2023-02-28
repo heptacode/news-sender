@@ -6,5 +6,5 @@ import { resolve } from 'path';
  * soldiers.json 업데이트
  */
 export function updateSoldiers() {
-  writeFileSync(resolve(__dirname, '../soldiers.json'), JSON.stringify(config.soldiers));
+  writeFileSync(resolve(process.cwd(), 'soldiers.json'), JSON.stringify(config.soldiers));
 }

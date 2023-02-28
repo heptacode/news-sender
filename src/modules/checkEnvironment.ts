@@ -1,5 +1,5 @@
 import { log } from '@/modules/logger';
-import { accessSync, constants } from 'fs';
+import { accessSync, constants, readFileSync } from 'node:fs';
 import { resolve } from 'path';
 
 const REQUIRED_ENV = ['USER_ID', 'USER_PW'];
@@ -7,7 +7,7 @@ const REQUIRED_ENV = ['USER_ID', 'USER_PW'];
 export function checkEnvironment() {
   try {
     accessSync('.env', constants.F_OK);
-    require(resolve(__dirname, '../soldiers.json'));
+    JSON.parse(readFileSync(resolve(process.cwd(), 'soldiers.json'), 'utf-8'));
 
     const missingValues = REQUIRED_ENV.filter((key: string) => !process.env[key]?.length);
     if (missingValues.length) {
